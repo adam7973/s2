@@ -90,7 +90,7 @@ def read_project_entries():
 
 def update_projects_entry(tree, record):
     project = itadata.Project.convert_from_tuple(record)
-    itasql.update_record(project)
+    itasql.update_projects_record(project)
     clear_projects_entries()
     # refresh_treeview(tree, itadata.Project)
 
@@ -171,7 +171,7 @@ entry_dist_projects.grid(row=1, column=1, padx=padx, pady=pady)
 
 label_freq_projects = tk.Label(edit_frame_projects, text="Frekvens")
 label_freq_projects.grid(row=0, column=2, padx=padx, pady=pady)
-entry_freq_projects = tk.Entry(edit_frame_projects, width=25, justify="right")
+entry_freq_projects = tk.Entry(edit_frame_projects, width=4, justify="right")
 entry_freq_projects.grid(row=1, column=2, padx=padx, pady=pady)
 
 # frame for buttons
@@ -229,7 +229,7 @@ def read_telescope_entries():
 
 def update_telescopes_entry(tree, record):
     telescope = itadata.Telescope.convert_from_tuple(record)
-    itasql.update_record(telescope)
+    itasql.update_telescopes_record(telescope)
     clear_telescopes_entries()
     # refresh_treeview(tree, itadata.Project)
 
@@ -369,7 +369,7 @@ def read_booking_entries():
 
 def update_booking_entry(tree, record):
     booking = itadata.Booking.convert_from_tuple(record)
-    itasql.update_record(booking)
+    itasql.update_bookings_record(booking)
     clear_booking_entries()
     # refresh_treeview(tree, itadata.Project)
 
@@ -443,17 +443,17 @@ entry_id_booking.grid(row=1, column=0, padx=padx, pady=pady)
 
 label_date_booking = tk.Label(edit_frame_booking, text="Date")
 label_date_booking.grid(row=0, column=1, padx=padx, pady=pady)
-entry_date_booking = tk.Entry(edit_frame_booking, width=10, justify="right")
+entry_date_booking = tk.Entry(edit_frame_booking, width=15, justify="right")
 entry_date_booking.grid(row=1, column=1, padx=padx, pady=pady)
 
 label_projid_booking = tk.Label(edit_frame_booking, text="Projekt Id")
 label_projid_booking.grid(row=0, column=2, padx=padx, pady=pady)
-entry_projid_booking = tk.Entry(edit_frame_booking, width=10, justify="right")
+entry_projid_booking = tk.Entry(edit_frame_booking, width=4, justify="right")
 entry_projid_booking.grid(row=1, column=2, padx=padx, pady=pady)
 
 label_telid_booking = tk.Label(edit_frame_booking, text="Teleskop Id")
 label_telid_booking.grid(row=0, column=3, padx=padx, pady=pady)
-entry_telid_booking = tk.Entry(edit_frame_booking, width=10, justify="right")
+entry_telid_booking = tk.Entry(edit_frame_booking, width=4, justify="right")
 entry_telid_booking.grid(row=1, column=3, padx=padx, pady=pady)
 # frame for buttons
 
