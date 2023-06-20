@@ -75,7 +75,7 @@ def update_telescopes_record(record):
         session.execute(
             update(Telescope)
             .where(Telescope.id == record.id)
-            .values(distance=record.distance, frequence=record.frequence)
+            .values(range=record.range, spectrum=record.spectrum)
         )
         session.commit()
 

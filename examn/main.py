@@ -231,7 +231,7 @@ def update_telescopes_entry(tree, record):
     telescope = itadata.Telescope.convert_from_tuple(record)
     itasql.update_telescopes_record(telescope)
     clear_telescopes_entries()
-    refresh_treeview(tree, itadata.Project)
+    refresh_treeview(tree, itadata.Telescope)
 
 
 def delete_telescopes_entry(tree, record):
@@ -371,7 +371,7 @@ def update_booking_entry(tree, record):
     booking = itadata.Booking.convert_from_tuple(record)
     itasql.update_bookings_record(booking)
     clear_booking_entries()
-    refresh_treeview(tree, itadata.Project)
+    refresh_treeview(tree, itadata.Booking)
 
 
 def delete_booking_entry(tree, record):
