@@ -90,14 +90,18 @@ def read_project_entries():
 
 def update_projects_entry(tree, record):
     project = itadata.Project.convert_from_tuple(record)
-    itasql.update_projects_record(project)
-    clear_projects_entries()
-    refresh_treeview(tree, itadata.Project)
+    if project.valid():
+        itasql.update_projects_record(project)
+        clear_projects_entries()
+        refresh_treeview(tree, itadata.Project)
+    else:
+        messagebox.showwarning("", "Something went wrong, please check your input")
 
 
 def delete_projects_entry(tree, record):
     project = itadata.Project.convert_from_tuple(record)
-    itasql.delete_projects_record(project)
+    if not itasql.delete_projects_record(project):
+        messagebox.showwarning("", "This project is in use")
     clear_projects_entries()
     refresh_treeview(tree, itadata.Project)
 
@@ -138,8 +142,8 @@ tree_scroll_projects.config(command=tree_projects.yview)
 tree_projects["columns"] = ("id", "distance", "frequence")
 tree_projects.column("#0", width=0, stretch=tk.NO)  # Suppress empty first col
 tree_projects.column("id", anchor=tk.E, width=40)
-tree_projects.column("distance", anchor=tk.E, width=100)
-tree_projects.column("frequence", anchor=tk.W, width=300)
+tree_projects.column("distance", anchor=tk.E, width=200)
+tree_projects.column("frequence", anchor=tk.W, width=100)
 tree_projects.heading("#0", text="", anchor=tk.W)
 tree_projects.heading("id", text="Id", anchor=tk.CENTER)
 tree_projects.heading("distance", text="Afstand", anchor=tk.CENTER)
@@ -236,7 +240,9 @@ def update_telescopes_entry(tree, record):
 
 def delete_telescopes_entry(tree, record):
     telescope = itadata.Telescope.convert_from_tuple(record)
-    itasql.delete_telescopes_record(telescope)
+    delete = itasql.delete_telescopes_record(telescope)
+    if not delete:
+        messagebox.showwarning("", "This telescope is in use")
     clear_projects_entries()
     refresh_treeview(tree, itadata.Telescope)
 

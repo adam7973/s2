@@ -23,6 +23,12 @@ def booking_makes_sense(booking):
             .where(extract("month", itadata.Booking.date) == booking.date.month)
             .where(extract("year", itadata.Booking.date) == booking.date.year)
         ).count()
+    if telescope == None:
+        messagebox.showwarning("", "No telescope with that id")
+        return False
+    if project == None:
+        messagebox.showwarning("", "No project with that id")
+        return False
     if records > 0:
         messagebox.showwarning("", "The telescope is already in use on that day")
         return False

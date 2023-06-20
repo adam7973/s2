@@ -64,8 +64,11 @@ def update_projects_record(record):
 def delete_projects_record(record):
     """Delete a record from the Projects table."""
     with Session(engine) as session:
+        if session.query(Booking).where(Booking.project_id == record.id) < 0:
+            return False
         session.execute(delete(Project).where(Project.id == record.id))
         session.commit()
+    return True
 
 
 # Telescopes
@@ -83,8 +86,11 @@ def update_telescopes_record(record):
 def delete_telescopes_record(record):
     """Delete a record from the telescopes table."""
     with Session(engine) as session:
+        if session.query(Booking).where(Booking.telescope_id == record.id).count() < 0:
+            return False
         session.execute(delete(Telescope).where(Telescope.id == record.id))
         session.commit()
+    return True
 
 
 # Bookings
